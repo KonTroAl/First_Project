@@ -10,17 +10,20 @@ class Data:
         return B
 
     @staticmethod
-    def valid(data_2):
-        b = Data.my_func(data_2)
+    def valid(param_2):
+        b = Data.my_func(param_2)
         if 1 <= b[1] <= 12 and 1 <= b[0] <= 31:
             print("Alright!")
         else:
             print("Incorrect data!")
 
+    @property
     def func(self):
         return self.data
 
 
-data_1 = Data("01-12-22")
-Data.valid("01-12-22")
+data_1 = Data("09-06-20")
+print(data_1.func)
+Data.valid(data_1.func)
+
 

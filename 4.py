@@ -1,31 +1,48 @@
+class OwnError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
+
+
 class Storage:
 
     @staticmethod
     def take():
-
         a = tech_1.my_list()
         b = tech_2.my_list()
         c = tech_3.my_list()
-        my_dict_1 = {"position_1": a[0], "value": int(a[1])}
+        my_dict_1 = {a[0]: int(a[1])}
         my_dict.update(my_dict_1)
-        my_dict.update(position_2=b[0], value_2=int(b[1]))
-        my_dict.update(position_3=c[0], value_3=int(c[1]))
-
-        print(my_dict)
+        my_dict_1 = {b[0]: int(b[1])}
+        my_dict.update(my_dict_1)
+        my_dict_1 = {c[0]: int(c[1])}
+        my_dict.update(my_dict_1)
+        print(f"On sclad:\n{my_dict}")
 
     @staticmethod
     def give(org, name, number):
-        dict = my_dict
-        arg = 0
-        if name == dict["position_1"] or name == dict["position_2"] or name == dict["position_3"]:
-            arg = name
-            if dict["value"] > 0 or dict["value_2"] > 0 or dict["value_3"] > 0:
-                
-                print(f"{name}, {number} in {org}")
+        try:
+            dict = list(my_dict.keys())
+            val = list(my_dict.values())
+            if name == dict[0] or name == dict[1] or name == dict[2]:
+                if val[0] > 0 or val[1] > 0 or val[2] > 0:
+                    number = int(number)
+                    if number < 0:
+                        raise OwnError(f"{number} - need to be positive!")
+                    result = my_dict[name] - number
+                    if result >= 0:
+                        my_dict[name] = result
+                        print(f"{name}, {number} in {org}")
+                        print(my_dict)
+                    else:
+                        print(f"You want too much!\nOn sclad:\n{my_dict}")
+                else:
+                    print(f"{name} not on sclad")
             else:
-                print(f"{name} not on sclad")
-        else:
-            print(f"Don't have such tech!")
+                print(f"We don't have tech like this: {name}")
+        except ValueError:
+            print(f"Incorrect {number}! Enter positive number!")
+        except OwnError as err:
+            print(err)
 
 
 class Tech:
@@ -64,10 +81,9 @@ class Xerox(Tech):
 tech_1 = Printer("HP", 25, 25)
 tech_2 = Scan("MSI", 12, 25)
 tech_3 = Xerox("Canon", 5, 25)
-# print(tech_1.my_func())
-# print(tech_2.my_func())
-# print(tech_3.my_func())
+
 my_dict = {}
 
 Storage.take()
-Storage.give("OK", "popo", 5)
+Storage.give("OK", "HP", 5)
+Storage.give("OK", "MSI", 5)

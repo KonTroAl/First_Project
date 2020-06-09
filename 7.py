@@ -13,6 +13,7 @@ class CompNum:
         return
 
 
+"""Вводится два числа: первое - действительная часть, второе - мнимая часть"""
 val_1 = CompNum(25, 5)
 val_2 = CompNum(45, -6)
 print(val_1 + val_2)
