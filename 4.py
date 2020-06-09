@@ -6,15 +6,9 @@ class OwnError(Exception):
 class Storage:
 
     @staticmethod
-    def take():
-        a = tech_1.my_list()
-        b = tech_2.my_list()
-        c = tech_3.my_list()
+    def take(param_1, param_2):
+        a = Tech(param_1, param_2).my_list()
         my_dict_1 = {a[0]: int(a[1])}
-        my_dict.update(my_dict_1)
-        my_dict_1 = {b[0]: int(b[1])}
-        my_dict.update(my_dict_1)
-        my_dict_1 = {c[0]: int(c[1])}
         my_dict.update(my_dict_1)
         print(f"On sclad:\n{my_dict}")
 
@@ -23,8 +17,8 @@ class Storage:
         try:
             dict = list(my_dict.keys())
             val = list(my_dict.values())
-            if name == dict[0] or name == dict[1] or name == dict[2]:
-                if val[0] > 0 or val[1] > 0 or val[2] > 0:
+            if name == dict[0]:
+                if val[0] > 0:
                     number = int(number)
                     if number < 0:
                         raise OwnError(f"{number} - need to be positive!")
@@ -32,11 +26,11 @@ class Storage:
                     if result >= 0:
                         my_dict[name] = result
                         print(f"{name}, {number} in {org}")
-                        print(my_dict)
+                        print(f"On storage:\n{my_dict}")
                     else:
-                        print(f"You want too much!\nOn sclad:\n{my_dict}")
+                        print(f"You want too much!\nOn storage:\n{my_dict}")
                 else:
-                    print(f"{name} not on sclad")
+                    print(f"{name} not on storage")
             else:
                 print(f"We don't have tech like this: {name}")
         except ValueError:
@@ -84,6 +78,7 @@ tech_3 = Xerox("Canon", 5, 25)
 
 my_dict = {}
 
-Storage.take()
-Storage.give("OK", "HP", 5)
-Storage.give("OK", "MSI", 5)
+Storage.take("HP", 25)
+Storage.take("MSI", 12)
+Storage.take("Canon", 5)
+Storage.give("Geology", "HP", 25)
