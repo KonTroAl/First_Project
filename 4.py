@@ -6,11 +6,14 @@ class OwnError(Exception):
 class Storage:
 
     @staticmethod
-    def take(param_1, param_2):
-        a = Tech(param_1, param_2).my_list()
-        my_dict_1 = {a[0]: int(a[1])}
-        my_dict.update(my_dict_1)
-        print(f"On sclad:\n{my_dict}")
+    def take(*param_1):
+        try:
+            a = list(param_1)
+            my_dict_1 = {a[el-1]: int(a[el]) for el in range(1, len(a), 2)}
+            my_dict.update(my_dict_1)
+            print(f"On storage:\n{my_dict}")
+        except ValueError:
+            print("Incorrect type of volume tech!")
 
     @staticmethod
     def give(org, name, number):
@@ -35,6 +38,8 @@ class Storage:
                 print(f"We don't have tech like this: {name}")
         except ValueError:
             print(f"Incorrect {number}! Enter positive number!")
+        except IndexError:
+            print("We have a problem on storage! Try later! Sorry!")
         except OwnError as err:
             print(err)
 
@@ -78,7 +83,5 @@ tech_3 = Xerox("Canon", 5, 25)
 
 my_dict = {}
 
-Storage.take("HP", 25)
-Storage.take("MSI", 12)
-Storage.take("Canon", 5)
+Storage.take("HP", 25, "MSI", 12, "Canon", "asd")
 Storage.give("Geology", "HP", 25)
